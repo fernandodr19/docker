@@ -1,0 +1,21 @@
+version: '3'
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8080:3000"
+        volumes:
+            - /app/node_modules
+            - .:/app
+    test:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
+
+### docker run -p 8080:3000 -v /app/node_modules -v $(pwd):/app fernandodr19/react-app
