@@ -1,3 +1,5 @@
+#Build status: [![Build Status](https://https://travis-ci.org/fernandodr19/docker.svg?branch=master)](https://travis-ci.com/travis-ci/docs-travis-ci-com)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
