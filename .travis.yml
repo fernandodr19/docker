@@ -4,4 +4,6 @@ services:
 
 before_install:
     - docker build -t fernandodr19/docker -f Dockerfile.dev .
-    
+
+script:
+    - docker run -e CI=true fernandodr19/docker npm run test -- --coverage
