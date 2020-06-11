@@ -11,3 +11,12 @@ or
 docker-compose up --build
 ```
 
+
+
+
+
+
+Hot relead using volumes (-v (volumes) creates a reference instead of a copy of files, this way we can work with hot reload):
+```docker
+docker run -p 8080:3000 -v /app/node_modules -v $(pwd):/app fernandodr19/react-app
+```
