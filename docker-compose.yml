@@ -6,6 +6,7 @@ services:
             dockerfile: Dockerfile.dev
         ports:
             - "8080:3000"
+        tty: true
         volumes:
             - /app/node_modules
             - .:/app
@@ -19,3 +20,7 @@ services:
         command: ["npm", "run", "test"]
 
 ### docker run -p 8080:3000 -v /app/node_modules -v $(pwd):/app fernandodr19/react-app
+### -v (volumes) is creates a reference instead of a copy of files, this way we can work with hot reload
+### port mappint outsideContainer:insideContainer
+
+## https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437078#overview
