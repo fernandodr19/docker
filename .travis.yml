@@ -9,16 +9,17 @@ before_install:
 script:
     - docker run -e CI=true fernandodr19/react npm run test -- --coverage
 
-# Deploy steps are disabled due to AWS Eelasticbeanstalk env shutdown
+# Deploy steps
 
-# deploy:
-#     provider: elasticbeanstalk
-#     region: "sa-east-1"                                      # South America
-#     app: "docker"                                            # AWS Eelasticbeanstalk Application Name
-#     env: "Docker-env"                                        # AWS Eelasticbeanstalk Enviroment name
-#     bucket_name: "elasticbeanstalk-sa-east-1-937557801350"   # S3 bucket (https://s3.console.aws.amazon.com/s3/home?region=sa-east-1#)
-#     bucket_path: "docker"                                    # Same as app
-#     on:                                                      # Trigger to deploy
-#         branch: master
-#     access_key_id: "$AWS_ACCESS_KEY"                         # Keys listed on Travis enviroment variables (https://travis-ci.org/github/fernandodr19/docker/settings)
-#     secret_access_key: "$AWS_SECRET_KEY"                     # Generated on AWS IAM
+deploy:
+    provider: elasticbeanstalk
+    region: "sa-east-1"                                      # South America
+    app: "docker"                                            # AWS Eelasticbeanstalk Application Name
+    env: "Docker-env"                                        # AWS Eelasticbeanstalk Enviroment name
+    bucket_name: "elasticbeanstalk-sa-east-1-937557801350"   # S3 bucket (https://s3.console.aws.amazon.com/s3/home?region=sa-east-1#)
+    bucket_path: "docker"                                    # Same as app
+    on:                                                      # Trigger to deploy
+        branch: master
+        condition: $AWS_SERVER_UP = "TRUE"                   # Flag configured on Travis that determines weather we can deploy it or not
+    access_key_id: "$AWS_ACCESS_KEY"                         # Keys listed on Travis enviroment variables (https://travis-ci.org/github/fernandodr19/docker/settings)
+    secret_access_key: "$AWS_SECRET_KEY"                     # Generated on AWS IAM
