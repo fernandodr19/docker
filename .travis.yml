@@ -1,7 +1,5 @@
 sudo: required
-env:
-    global:
-        - MAKEFLAGS="-j 8"
+
 services:
     - docker
 
