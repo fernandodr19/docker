@@ -7,14 +7,11 @@ before_install:
     - docker build -t fernandodr19/react -f Dockerfile.dev .
 
 script:
-    - echo "::::::::::::::::::::::::::::Gonna run scripts:::::::::::::::::::::::::::::"
     - docker run -e CI=true fernandodr19/react npm run test -- --coverage
-    - echo "AWS DEPLOY ENABLED -----> "$AWS_DEPLOY_ENABLED
 
 # Deploy steps
 
 deploy:
-    - echo "AWS DEPLOY ENABLED ----------------> "$AWS_DEPLOY_ENABLED
     provider: elasticbeanstalk
     region: "sa-east-1"                                      # South America
     app: "docker"                                            # AWS Eelasticbeanstalk Application Name
