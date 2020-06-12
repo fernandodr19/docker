@@ -10,3 +10,15 @@ before_install:
 
 script:
     - docker run -e CI=true fernandodr19/react npm run test -- --coverage
+
+# Deploy steps
+
+deploy:
+    provider: elasticbeanstalk
+    region: "sa-east-1"                                      # South America
+    app: "docker"                                            # Name of AWS Eelasticbeanstalk name
+    env: "Docker-env"                                        # Enviroment name
+    bucket_name: "elasticbeanstalk-sa-east-1-937557801350"   # S3 bucket that Travis is gonna generate (zip with all my repository files) (https://s3.console.aws.amazon.com/s3/home?region=sa-east-1#)
+    bucket_path: "docker"                                    # Same as app
+    on:                                                      # Trigger to deploy
+        branch: master
