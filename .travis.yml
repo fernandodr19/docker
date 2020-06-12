@@ -8,6 +8,7 @@ before_install:
 
 script:
     - docker run -e CI=true fernandodr19/react npm run test -- --coverage
+    - echo "AWS DEPLOY ENABLED -----> "$AWS_DEPLOY_ENABLED
 
 # Deploy steps
 
